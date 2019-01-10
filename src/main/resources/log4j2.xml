@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="60">
+    <Properties>
+        <Property name="loglayout">[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p, %t, %c, %m%n</Property>
+        <Property name="logsavepath">/var/log/webapi/testapi/</Property>
+        <Property name="infologfilename">info</Property>
+        <Property name="errorlogfilename">error</Property>
+        <Property name="filepattern">%d{yyyy-MM-dd}-%i.zip</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console_Appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${loglayout}"/>
+        </Console>
+
+        <RollingFile name="Process_File_Appender" fileName="${logsavepath}${infologfilename}.log" filePattern="${logsavepath}${infologfilename}-${filepattern}">
+            <PatternLayout pattern="${loglayout}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="max" min="1" max="10" compressionLevel="9"/>
+        </RollingFile>
+
+        <RollingFile name="Error_File_Appender" fileName="${logsavepath}${errorlogfilename}.log" filePattern="${logsavepath}${errorlogfilename}-${filepattern}">
+            <PatternLayout pattern="${loglayout}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="max" min="1" max="10" compressionLevel="9"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console_Appender"/>
+            <AppenderRef ref="Process_File_Appender"/>
+        </Root>
+        <Logger name="org.example.myapp.handler" level="error" additivity="false">
+            <AppenderRef ref="Error_File_Appender"/>
+        </Logger>
+    </Loggers>
+</Configuration>

@@ -7,9 +7,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Path("/")
 public class TestAPI {
+	private static final Logger logger = LogManager.getLogger();
 
 	@Path("/text")
 	@GET
@@ -42,5 +45,15 @@ public class TestAPI {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Human pojo() {
 		return new Human("Nakamura", 26);
+	}
+
+	@Path("infolog")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, String> infolog() {
+		logger.info("test log");
+		Map<String, String> map = new HashMap<>();
+        map.put("loginfo", "test log info");
+        return map;
 	}
 }
