@@ -56,4 +56,11 @@ public class TestAPI {
         map.put("loginfo", "test log info");
         return map;
 	}
+
+	@Path("errorlog")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, String> errorlog() throws Exception {
+			throw new Exception("test exception.");
+	}
 }

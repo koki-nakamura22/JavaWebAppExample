@@ -35,12 +35,12 @@
     </Appenders>
 
     <Loggers>
+        <Logger name="org.example.myapp.exception.mapper" level="error" additivity="false">
+            <AppenderRef ref="Error_File_Appender"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="Console_Appender"/>
             <AppenderRef ref="Process_File_Appender"/>
         </Root>
-        <Logger name="org.example.myapp.handler" level="error" additivity="false">
-            <AppenderRef ref="Error_File_Appender"/>
-        </Logger>
     </Loggers>
 </Configuration>
