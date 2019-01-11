@@ -3,6 +3,8 @@
     <Properties>
         <Property name="loglayout">[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p, %t, %c, %m%n</Property>
         <Property name="logsavepath">/var/log/webapi/testapi/</Property>
+        <Property name="archiveloginfopath">/var/log/webapi/testapi/archives-info-log/</Property>
+        <Property name="archivelogerrorpath">/var/log/webapi/testapi/archives-error-log/</Property>
         <Property name="infologfilename">info</Property>
         <Property name="errorlogfilename">error</Property>
         <Property name="filepattern">%d{yyyy-MM-dd}-%i.zip</Property>
@@ -13,7 +15,7 @@
             <PatternLayout pattern="${loglayout}"/>
         </Console>
 
-        <RollingFile name="Process_File_Appender" fileName="${logsavepath}${infologfilename}.log" filePattern="${logsavepath}${infologfilename}-${filepattern}">
+        <RollingFile name="Process_File_Appender" fileName="${logsavepath}${infologfilename}.log" filePattern="${archiveloginfopath}${infologfilename}-${filepattern}">
             <PatternLayout pattern="${loglayout}"/>
             <Policies>
                 <OnStartupTriggeringPolicy />
@@ -23,7 +25,7 @@
             <DefaultRolloverStrategy fileIndex="max" min="1" max="10" compressionLevel="9"/>
         </RollingFile>
 
-        <RollingFile name="Error_File_Appender" fileName="${logsavepath}${errorlogfilename}.log" filePattern="${logsavepath}${errorlogfilename}-${filepattern}">
+        <RollingFile name="Error_File_Appender" fileName="${logsavepath}${errorlogfilename}.log" filePattern="${archivelogerrorpath}${errorlogfilename}-${filepattern}">
             <PatternLayout pattern="${loglayout}"/>
             <Policies>
                 <OnStartupTriggeringPolicy />
