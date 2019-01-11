@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
-    id 'eclipse'
-    id 'war'
-    id 'org.gretty' version '2.3.1'
+    id "java"
+    id "eclipse"
+    id "war"
+    id "org.gretty" version "2.3.1"
 }
 
 repositories {
@@ -10,22 +10,26 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-    providedCompile 'org.glassfish.jersey.containers:jersey-container-servlet:2.27'
-    providedCompile 'org.glassfish.jersey.core:jersey-client:2.27'
-    providedCompile 'org.glassfish.jersey.inject:jersey-hk2:2.27'
-    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.27'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
-    compile 'org.apache.logging.log4j:log4j-api:2.8'
-    compile 'org.apache.logging.log4j:log4j-core:2.8'
-    compile 'org.apache.commons:commons-lang3:3.8.1'
+def jerseyLibVer = "2.27";
+def jacksonLibVer = "2.9.8";
+def log4jLibVer = "2.8";
 
-    testCompile 'junit:junit:4.12'
+dependencies {
+    providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+    providedCompile "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyLibVer"
+    providedCompile "org.glassfish.jersey.core:jersey-client:$jerseyLibVer"
+    providedCompile "org.glassfish.jersey.inject:jersey-hk2:$jerseyLibVer"
+    compile "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyLibVer"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonLibVer"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonLibVer"
+    compile "org.apache.logging.log4j:log4j-api:$log4jLibVer"
+    compile "org.apache.logging.log4j:log4j-core:$log4jLibVer"
+    compile "org.apache.commons:commons-lang3:3.8.1"
+
+    testCompile "junit:junit:4.12"
 }
 
-defaultTasks 'clean', 'build', 'war'
+defaultTasks "clean", "build", "war"
 
 war {
 	archiveName = "${archivesBaseName}.war"
@@ -33,5 +37,5 @@ war {
 
 gretty {
     httpPort = 18080
-    servletContainer = 'tomcat9'
+    servletContainer = "tomcat9"
 }
