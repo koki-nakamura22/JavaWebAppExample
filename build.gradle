@@ -15,10 +15,10 @@ def jacksonLibVer = "2.9.8";
 def log4jLibVer = "2.8";
 
 dependencies {
-    providedCompile "javax.servlet:javax.servlet-api:3.1.0"
-    providedCompile "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyLibVer"
-    providedCompile "org.glassfish.jersey.core:jersey-client:$jerseyLibVer"
-    providedCompile "org.glassfish.jersey.inject:jersey-hk2:$jerseyLibVer"
+    compile "javax.servlet:javax.servlet-api:3.1.0"
+    compile "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyLibVer"
+    compile "org.glassfish.jersey.core:jersey-client:$jerseyLibVer"
+    compile "org.glassfish.jersey.inject:jersey-hk2:$jerseyLibVer"
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyLibVer"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonLibVer"
     compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonLibVer"
